@@ -7,12 +7,17 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 
 public class MediaPlayer extends Application{
+
+    FileChooser mediaFileChooser;
+
     MenuBar menu;
     Menu fileMenu;
     MenuItem openItem;
@@ -24,6 +29,8 @@ public class MediaPlayer extends Application{
             BorderPane root = new BorderPane();
             Scene scene1 = new Scene(root,400,400);
 
+            mediaFileChooser = new FileChooser();
+
             menu = new MenuBar();
             fileMenu = new Menu("File");
             openItem = new MenuItem("Open");
@@ -31,7 +38,10 @@ public class MediaPlayer extends Application{
             fileMenu.getItems().add(openItem);
             menu.getMenus().add(fileMenu);
 
-            openItem.setOnAction((e) -> {System.out.println("clicked open");});
+            openItem.setOnAction((e) -> {
+                File mediaFile = mediaFileChooser.showOpenDialog(primaryStage);
+                System.out.println(mediaFile.getAbsolutePath());
+            });
 
             root.setTop(menu);
 
