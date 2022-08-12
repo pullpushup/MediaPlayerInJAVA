@@ -1,6 +1,37 @@
 package com.media;
 
+import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.MediaPlayer;
 
-public class MediaBar {
+public class MediaBar extends HBox {
+
+    Slider time;
+    Slider vol;
+    MediaPlayer player;
+
+    public MediaBar(MediaPlayer play){
+        player = play;
+
+        vol = new Slider();
+        time = new Slider();
+
+        getChildren().add(time);
+        getChildren().add(vol);
+
+        vol.prefWidth(70);
+        vol.setMinWidth(30);
+        vol.setValue(100);
+
+        time.valueProperty().addListener((o) ->{
+            System.out.println(player.getMedia().getDuration().multiply(time.getValue()/100));
+            player.seek(player.getMedia().getDuration().multiply(time.getValue()/100));
+        });
+
+        vol.valueProperty().addListener((o) ->{
+            System.out.println(vol.getValue());
+            player.setVolume(vol.getValue()/100);
+        });
+    }
+
 }
