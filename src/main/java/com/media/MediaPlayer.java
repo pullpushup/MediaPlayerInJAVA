@@ -12,12 +12,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 
 public class MediaPlayer extends Application{
 
     FileChooser mediaFileChooser;
-
+    Player mediaPlayer;
     MenuBar menu;
     Menu fileMenu;
     MenuItem openItem;
@@ -39,8 +40,15 @@ public class MediaPlayer extends Application{
             menu.getMenus().add(fileMenu);
 
             openItem.setOnAction((e) -> {
-                File mediaFile = mediaFileChooser.showOpenDialog(primaryStage);
-                System.out.println(mediaFile.getAbsolutePath());
+
+                try {
+                    File mediaFile = mediaFileChooser.showOpenDialog(primaryStage);
+                    System.out.println(mediaFile.getAbsolutePath() + ": " + mediaFile.toURI().toURL().toExternalForm());
+                    mediaPlayer = new Player(mediaFile.toURI().toURL().toExternalForm());
+                } catch (MalformedURLException ex) {
+                    ex.printStackTrace();
+                }
+                root.setCenter(mediaPlayer);
             });
 
             root.setTop(menu);
