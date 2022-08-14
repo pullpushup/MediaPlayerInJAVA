@@ -1,5 +1,6 @@
 package com.media;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
@@ -23,8 +24,13 @@ public class MediaBar extends HBox {
         vol.setMinWidth(30);
         vol.setValue(100);
 
+        player.currentTimeProperty().addListener((o)-> {
+
+           time.setValue(player.getCurrentTime().toMillis()/player.getTotalDuration().toMillis()*100);
+        });
+
         time.valueProperty().addListener((o) ->{
-            System.out.println(player.getMedia().getDuration().multiply(time.getValue()/100));
+            if(time.isPressed() )
             player.seek(player.getMedia().getDuration().multiply(time.getValue()/100));
         });
 
