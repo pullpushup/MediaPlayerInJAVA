@@ -45,6 +45,8 @@ public class MediaPlayer extends Application{
                     File mediaFile = mediaFileChooser.showOpenDialog(primaryStage);
                     System.out.println(mediaFile.getAbsolutePath() + ": " + mediaFile.toURI().toURL().toExternalForm());
                     mediaPlayer = new Player(mediaFile.toURI().toURL().toExternalForm());
+                    mediaPlayer.view.setFitWidth(scene1.getWidth());
+                    root.setCenter(mediaPlayer);
                 } catch (MalformedURLException ex) {
                     ex.printStackTrace();
                 }
@@ -52,6 +54,10 @@ public class MediaPlayer extends Application{
             });
 
             root.setTop(menu);
+
+            primaryStage.widthProperty().addListener((obs,oldVal,newVal)-> {
+                mediaPlayer.view.setFitWidth(scene1.getWidth());
+            });
 
             primaryStage.setScene(scene1);
             primaryStage.show();
