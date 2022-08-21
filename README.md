@@ -6,4 +6,4 @@
 
 -Adding Video file in player.
 
-<img src="Videos/AddingFile.gif" alt="Adding file" width="500" height="500">
+<img src="media/Videos/AddingFile.gif" alt="Adding file" width="500" height="500">
