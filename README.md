@@ -4,6 +4,14 @@
 
 ### Features I added in Media player
 
--Adding Video file in player.
+#### Pause Feature 
 
-<img src="media/Videos/AddingFile.gif" alt="Adding file" width="500" height="500">
+<img src="src/main/java/com/media/Videos/Paues.gif" alt="Adding file" width="728" height="480">
+
+#### Timeline of Video working
+
+<img src="src/main/java/com/media/Videos/Timeline.gif" alt="Adding file" width="728" height="480">
+
+#### Volume
+
+<img src="src/main/java/com/media/Videos/Volumne.gif" alt="Adding file" width="728" height="480">
